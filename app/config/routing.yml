@@ -1,0 +1,5 @@
+ccis_ccis:
+    resource: "@CcisCcisBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
