@@ -3,6 +3,7 @@
 namespace Ccis\CcisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Activite
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ccis\CcisBundle\Entity\ActiviteRepository")
  */
-class Activite
-{
+class Activite {
+
     /**
      * @var integer
      *
@@ -20,7 +21,7 @@ class Activite
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
+
     /**
      * @var string
      *
@@ -31,14 +32,14 @@ class Activite
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="resume", type="string", length=255)
+     * @ORM\Column(name="resume", type="string", length=255, nullable=true)
      */
     private $resume;
 
@@ -48,65 +49,61 @@ class Activite
      * @ORM\Column(name="detail", type="string", length=255)
      */
     private $detail;
-	
-	
-	
+
     /**
      *   
      * @ORM\ManyToOne(targetEntity="EntiteAdministrative", inversedBy="activities")
-     * @ORM\JoinColumn(name="entiteadministrative_id", referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\Column(nullable=true)
      */
     private $entiteadministrative;
 
     /**
      * 
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="createur_id", referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     * @ORM\Column(nullable=true)
      */
     private $createur;
-	
-	/**
+
+    /**
      * 
      * @ORM\OneToMany(targetEntity="PiecesJoint", mappedBy="activite")
+     * @ORM\Column(nullable=true)
      */
-	private $piecesjointes;
-	
-	/**
+    private $piecesjointes;
+
+    /**
      * Get piecesjointes
      *
      * @return  Doctrine\Common\Collections\ArrayCollection 
      */
-    public function getPiecesjointes()
-    {
+    public function getPiecesjointes() {
         return $this->piecesjointes;
     }
-	
-	 /**
+
+    /**
      * Set piecesjointes
      *
      * @param  Doctrine\Common\Collections\ArrayCollection $piecesjointes
      * @return Activite
      */
-    public function setPiecesjointes($piecesjointes)
-    {
+    public function setPiecesjointes($piecesjointes) {
         $this->piecesjointes = $piecesjointes;
-    
+
         return $this;
     }
-	
-	public function __construct() {
+
+    public function __construct() {
         $this->piecesjointes = new ArrayCollection();
     }
-
-	
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -116,10 +113,9 @@ class Activite
      * @param string $titre
      * @return Activite
      */
-    public function setTitre($titre)
-    {
+    public function setTitre($titre) {
         $this->titre = $titre;
-    
+
         return $this;
     }
 
@@ -128,8 +124,7 @@ class Activite
      *
      * @return string 
      */
-    public function getTitre()
-    {
+    public function getTitre() {
         return $this->titre;
     }
 
@@ -139,10 +134,9 @@ class Activite
      * @param \DateTime $date
      * @return Activite
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
-    
+
         return $this;
     }
 
@@ -151,8 +145,7 @@ class Activite
      *
      * @return \DateTime 
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
@@ -162,10 +155,9 @@ class Activite
      * @param string $resume
      * @return Activite
      */
-    public function setResume($resume)
-    {
+    public function setResume($resume) {
         $this->resume = $resume;
-    
+
         return $this;
     }
 
@@ -174,8 +166,7 @@ class Activite
      *
      * @return string 
      */
-    public function getResume()
-    {
+    public function getResume() {
         return $this->resume;
     }
 
@@ -185,10 +176,9 @@ class Activite
      * @param string $detail
      * @return Activite
      */
-    public function setDetail($detail)
-    {
+    public function setDetail($detail) {
         $this->detail = $detail;
-    
+
         return $this;
     }
 
@@ -197,8 +187,7 @@ class Activite
      *
      * @return string 
      */
-    public function getDetail()
-    {
+    public function getDetail() {
         return $this->detail;
     }
 
@@ -208,10 +197,9 @@ class Activite
      * @param \Ccis\CcisBundle\Entity\EntiteAdministrative $entiteadministrative
      * @return Activite
      */
-    public function setEntiteadministrative($entiteadministrative)
-    {
+    public function setEntiteadministrative($entiteadministrative) {
         $this->entiteadministrative = $entiteadministrative;
-    
+
         return $this;
     }
 
@@ -220,8 +208,7 @@ class Activite
      *
      * @return \Ccis\CcisBundle\Entity\EntiteAdministrative 
      */
-    public function getEntiteadministrative()
-    {
+    public function getEntiteadministrative() {
         return $this->entiteadministrative;
     }
 
@@ -231,10 +218,9 @@ class Activite
      * @param \Ccis\CcisBundle\Entity\User $createur
      * @return Activite
      */
-    public function setCreateur($createur)
-    {
+    public function setCreateur($createur) {
         $this->createur = $createur;
-    
+
         return $this;
     }
 
@@ -243,8 +229,8 @@ class Activite
      *
      * @return \Ccis\CcisBundle\Entity\User
      */
-    public function getCreateur()
-    {
+    public function getCreateur() {
         return $this->createur;
     }
+
 }

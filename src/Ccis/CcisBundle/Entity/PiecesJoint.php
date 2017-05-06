@@ -52,7 +52,7 @@ class PiecesJoint
     /**
      * 
      * @ORM\ManyToOne(targetEntity="Activite")
-     * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
     private $activite;
 

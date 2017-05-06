@@ -4,15 +4,14 @@ namespace Ccis\CcisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * EntiteAdministrative
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class EntiteAdministrative
-{
+class EntiteAdministrative {
+
     /**
      * @var integer
      *
@@ -39,41 +38,39 @@ class EntiteAdministrative
     /**
      * 
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(referencedColumnName="id") 
+     * @ORM\Column(nullable=true)
      */
     private $responsable;
-	
-	
-	/**
+
+    /**
      * 
      * @ORM\OneToMany(targetEntity="Activite", mappedBy="entiteadministrative")
      */
-	private $activites;
-	
-	 /**
+    private $activites;
+
+    /**
      * Get activities
      *
      * @return  Doctrine\Common\Collections\ArrayCollection 
      */
-    public function getActivities()
-    {
+    public function getActivities() {
         return $this->activites;
     }
-	
-	 /**
+
+    /**
      * Set activities
      *
      * @param  Doctrine\Common\Collections\ArrayCollection $activities
      * @return EntiteAdministrative
      */
-    public function setActivities($activities)
-    {
+    public function setActivities($activities) {
         $this->activities = $activities;
-    
+
         return $this;
     }
-	
-	public function __construct() {
+
+    public function __construct() {
         $this->activites = new ArrayCollection();
     }
 
@@ -82,8 +79,7 @@ class EntiteAdministrative
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -93,10 +89,9 @@ class EntiteAdministrative
      * @param string $nom
      * @return EntiteAdministrative
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -105,8 +100,7 @@ class EntiteAdministrative
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -116,10 +110,9 @@ class EntiteAdministrative
      * @param integer $type
      * @return EntiteAdministrative
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
-    
+
         return $this;
     }
 
@@ -128,8 +121,7 @@ class EntiteAdministrative
      *
      * @return integer 
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -139,10 +131,9 @@ class EntiteAdministrative
      * @param \Ccis\CcisBundle\Entity\User $responsable
      * @return EntiteAdministrative
      */
-    public function setResponsable($responsable)
-    {
+    public function setResponsable($responsable) {
         $this->responsable = $responsable;
-    
+
         return $this;
     }
 
@@ -151,8 +142,8 @@ class EntiteAdministrative
      *
      * @return \Ccis\CcisBundle\Entity\User
      */
-    public function getResponsable()
-    {
+    public function getResponsable() {
         return $this->responsable;
     }
+
 }

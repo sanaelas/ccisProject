@@ -52,7 +52,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
      */
     private $role;
 
